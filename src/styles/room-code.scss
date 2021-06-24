@@ -1,0 +1,71 @@
+#toast {
+    visibility: hidden;
+    max-width: 70px;
+    max-height: 30px;
+    background: #835afd;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 0 6px 0 2px;
+    z-index: 1;
+    left: 50%;
+    font-size: 12px;
+    margin-bottom: 5px;
+
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 0px; opacity: 1;}
+  }
+
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 0px; opacity: 1;}
+  }
+
+  @-webkit-keyframes fadeout {
+    from {bottom: 0px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+  @keyframes fadeout {
+    from {bottom: 0px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+}
+
+#toast.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.room-code {
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  background: #fff;
+  border: 1px solid #835afd;
+  cursor: pointer;
+
+  display: flex;
+
+  div {
+    background: #835afd;
+    padding: 0 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  span {
+    display: block;
+    align-self: center;
+    flex: 1;
+    padding: 0 16px 0 12px;
+    width: 240px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
