@@ -1,5 +1,6 @@
 #toast {
-    visibility: hidden;
+    display: none;
+    position: absolute;
     max-width: 70px;
     max-height: 30px;
     background: #835afd;
@@ -8,35 +9,15 @@
     border-radius: 8px;
     padding: 0 6px 0 2px;
     z-index: 1;
-    left: 50%;
+    left: 57%;
+    top: 1%;
     font-size: 12px;
-    margin-bottom: 5px;
 
-  @-webkit-keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 0px; opacity: 1;}
-  }
-
-  @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 0px; opacity: 1;}
-  }
-
-  @-webkit-keyframes fadeout {
-    from {bottom: 0px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
-
-  @keyframes fadeout {
-    from {bottom: 0px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
-}
-
-#toast.show {
-  visibility: visible;
-  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    &.show {
+      display: block;
+      -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
 }
 
 .room-code {
