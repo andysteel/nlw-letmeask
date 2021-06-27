@@ -1,5 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 import logoImg from '../assets/images/logo.svg';
+import checkImg from '../assets/images/check.svg';
+import answeredImg  from '../assets/images/answer.svg';
 import { Button } from '../components/Button';
 import { RoomCode } from '../components/Roomcode';
 import { database } from '../services/firebase';
@@ -32,6 +34,18 @@ export const AdminRoom = () => {
     history.push('/');
   }
 
+  const handleCheckQuestionAsAnswered = async (questionId: string) => {
+    await database.ref(`/rooms/${params.id}/questions/${questionId}`).update({
+      isAnswered: true
+    });
+  }
+
+  const handleHighlightQuestion = async (questionId: string) => {
+    await database.ref(`/rooms/${params.id}/questions/${questionId}`).update({
+      isHighlighted: true
+    });
+  }
+
   return (
     <div id="page-room">
       <header>
@@ -52,7 +66,29 @@ export const AdminRoom = () => {
 
         <div className="question-list">
           {questions.map( q =>
-            <Question content={q.content} author={q.author} key={q.id}>
+            <Question
+              content={q.content}
+              author={q.author}
+              key={q.id}
+              isAnswered={q.isAnswered}
+              isHighlighted={q.isHighlighted}>
+
+              {!q.isAnswered && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => handleCheckQuestionAsAnswered(q.id)}
+                  >
+                    <img src={checkImg} alt="Marcar pergunta como respondida" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleHighlightQuestion(q.id)}
+                  >
+                    <img src={answeredImg} alt="Dar destaque à pergunta" />
+                  </button>
+                </>
+              )}
               <button
                 type="button"
                 onClick={() => handleDeleteQuestion(q.id)}
